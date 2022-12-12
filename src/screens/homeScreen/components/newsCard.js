@@ -1,27 +1,50 @@
-
-
 import React from "react";
-import {View} from "react-native";
-import { Avatar, Button, Card, Title, Paragraph } from 'react-native-paper';
+import {Image, StyleSheet, View} from "react-native";
+import theme from "../../../theme";
+import { Button, Card, Title, Paragraph } from 'react-native-paper';
+import * as RootNavigator from "../../../util/RootNavigator";
+import { DETAILS } from "../../../navigators/routes";
+import { useNavigation } from "@react-navigation/native";
 
 
 interface NewsCardProps {
+    news: {}
 }
 
 export default function NewsCard({news}: NewsCardProps) {
+
+    const navigation = useNavigation();
+    const goToDetailsScreen = () => {
+      navigation.navigate(DETAILS, {
+        news,
+      });
+    };
+
     return (
+
         <Card mode="contained">
-            <Card.Title title="Card Title" subtitle="Card Subtitle"/>
-            
-            <Card.Cover source={{ uri: 'https://picsum.photos/700' }} />
+            <Card.Title titleStyle={styles.title} title={news.title}/>
             <Card.Content>
-                <Title>Card title</Title>
-                <Paragraph>Card content</Paragraph>
+                <Image
+                    style={styles.image}
+                    source={{uri: news.urlToImage}}
+                />
+                <Paragraph>{news.description}</Paragraph>
             </Card.Content>
             <Card.Actions>
-                <Button>Cancel</Button>
-                <Button>Ok</Button>
+                <Button onPress={() => goToDetailsScreen()}>Detaylar</Button>
             </Card.Actions>
         </Card>
     );
 }
+
+
+const styles = StyleSheet.create({
+    image: {
+        width: '100%',
+        height: 200
+    },
+    title: {
+        fontWeight: 'bold'
+    }
+});

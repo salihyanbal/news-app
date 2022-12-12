@@ -25,19 +25,47 @@ import StackNavigator from "./src/navigators/stackNavigator";
 import {navigationRef} from "./src/util/RootNavigator";
 import TopBar from './src/components/topBar';
 
+import Data from './src/db/data';
 
-
+var dbService = new Data()
+dbService.init()
+dbService.createTable("news", [{
+  name: 'id',
+  dataType: 'integer',
+  isNotNull: true,
+  options: 'PRIMARY KEY AUTOINCREMENT'
+}, {
+  name: 'author',
+  dataType: 'text'
+}, {
+  name: 'title',
+  dataType: 'text'
+},{
+  name: 'description',
+  dataType: 'text'
+},{
+  name: 'url',
+  dataType: 'text'
+},{
+  name: 'urlToImage',
+  dataType: 'text'
+},{
+  name: 'publishedAt',
+  dataType: 'date'
+},{
+  name: 'content',
+  dataType: 'text'
+}])
 
 
 const App: () => Node = () => {
- 
   return (
     <>
-      <TopBar title="Main"/>
       <SafeAreaView
       style={{flex:1}}
       >
           <NavigationContainer ref={navigationRef}>
+            <TopBar/>
             <StackNavigator/>
           </NavigationContainer>
       </SafeAreaView>
