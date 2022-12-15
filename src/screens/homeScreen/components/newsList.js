@@ -36,6 +36,7 @@ export default function NewsList() {
             dbService.deleteAll("news")
             dbService.insertAll("news", result.data.articles)
             let newsSelect = await dbService.select("news", "*")
+            console.log(newsSelect)
             result.data.articles = newsSelect
             setNewsResponse(result.data)
           });

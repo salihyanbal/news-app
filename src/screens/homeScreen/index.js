@@ -24,6 +24,7 @@ export default function HomeScreen() {
     return (
         <View style={styles.container}>
               <NewsList/>
+              <Text>Recycler View</Text>
         </View>
 
     );
