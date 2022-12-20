@@ -5,6 +5,8 @@ import { Button, Card, Title, Paragraph } from 'react-native-paper';
 import * as RootNavigator from "../../../util/RootNavigator";
 import { DETAILS } from "../../../navigators/routes";
 import { useNavigation } from "@react-navigation/native";
+import PushNotification, {Importance} from 'react-native-push-notification';
+
 
 
 interface NewsCardProps {
@@ -12,6 +14,7 @@ interface NewsCardProps {
 }
 
 export default function NewsCard({news}: NewsCardProps) {
+    
 
     const navigation = useNavigation();
     const goToDetailsScreen = () => {
@@ -19,6 +22,20 @@ export default function NewsCard({news}: NewsCardProps) {
         news,
       });
     };
+
+    const sendNotification = async function () {
+
+        
+        PushNotification.localNotificationSchedule({
+            channelId: "first-channel",
+            title: "Yeni Haber",
+            message: news.title,
+            date: new Date(Date.now() + 2 * 1000)
+        
+            /* Android Only Properties */
+        });
+
+    }
 
     return (
 
@@ -32,6 +49,10 @@ export default function NewsCard({news}: NewsCardProps) {
                 <Paragraph>{news.description}</Paragraph>
             </Card.Content>
             <Card.Actions>
+                <Button mode="contained" style={styles.input} onPress={() => sendNotification()} >
+                        
+                        BILDIRIM
+                </Button>
                 <Button onPress={() => goToDetailsScreen()}>Detaylar</Button>
             </Card.Actions>
         </Card>
@@ -46,5 +67,8 @@ const styles = StyleSheet.create({
     },
     title: {
         fontWeight: 'bold'
+    },
+    input: {
+        margin: theme.spacing.m,
     }
 });
