@@ -54,12 +54,12 @@ export default function LoginScreen() {
                 <TextInput
                 style={styles.input}
                 label="Password"
+                secureTextEntry={true}
                 value={password}
                 onChangeText={password => setPassword(password)}
                 type="outlined"
                 />
                 <Button icon="login" mode="contained" style={styles.input} onPress={() => loginAction()} >
-                    
                     Login
                 </Button>
         </View>

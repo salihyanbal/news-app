@@ -32,7 +32,6 @@ export default function NewsCard({news}: NewsCardProps) {
             message: news.title,
             date: new Date(Date.now() + 2 * 1000)
         
-            /* Android Only Properties */
         });
 
     }

@@ -17,6 +17,12 @@ import com.oblador.vectoricons.VectorIconsPackage;
 import com.reactnativecommunity.netinfo.NetInfoPackage;
 // react-native-fs
 import com.rnfs.RNFSPackage;
+// react-native-image-picker
+import com.imagepicker.ImagePickerPackage;
+// react-native-maps
+import com.airbnb.android.react.maps.MapsPackage;
+// react-native-permissions
+import com.zoontek.rnpermissions.RNPermissionsPackage;
 // react-native-push-notification
 import com.dieam.reactnativepushnotification.ReactNativePushNotificationPackage;
 // react-native-safe-area-context
@@ -73,6 +79,9 @@ public class PackageList {
       new VectorIconsPackage(),
       new NetInfoPackage(),
       new RNFSPackage(),
+      new ImagePickerPackage(),
+      new MapsPackage(),
+      new RNPermissionsPackage(),
       new ReactNativePushNotificationPackage(),
       new SafeAreaContextPackage(),
       new RNScreensPackage(),

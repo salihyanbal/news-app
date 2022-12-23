@@ -5,12 +5,19 @@ import * as RootNavigator from "../../util/RootNavigator"
 import theme from "../../theme";
 import NewsCard from "./components/newsCard";
 import NewsList from "./components/newsList";
+import { useNavigation } from "@react-navigation/native";
+import { ALBUMS } from "../../navigators/routes";
 
 
 export default function HomeScreen() {
     const [active, setActive] = useState(1);
     const [navOpen, setNavOpen] = useState(false);
 
+    const navigation = useNavigation();
+
+    const toAlbumsPage = () => [
+        navigation.navigate(ALBUMS)
+    ]
     
 
     const handleNavOpen = () => {
@@ -23,8 +30,10 @@ export default function HomeScreen() {
 
     return (
         <View style={styles.container}>
+
               <NewsList/>
-              <Text>Recycler View</Text>
+              <Button onPress={() => toAlbumsPage()}>Albums</Button>
+
         </View>
 
     );
